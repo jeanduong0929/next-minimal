@@ -1,9 +1,15 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CommandIcon } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+import { useSession } from "next-auth/react";
+import { UserDropdown } from "./user-dropdown";
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   return (
     <nav className="flex items-center justify-between py-5">
       {/* Left */}
@@ -13,9 +19,13 @@ const Navbar = () => {
       </Link>
 
       {/* Right */}
-      <Link href={"/login"}>
-        <Button>Login</Button>
-      </Link>
+      {session ? (
+        <UserDropdown />
+      ) : (
+        <Link href={"/login"}>
+          <Button>Login</Button>
+        </Link>
+      )}
     </nav>
   );
 };
