@@ -5,7 +5,7 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex gap-10 py-5">
       <Sidebar />
-      {children}
+      <main className="w-full">{children}</main>
     </div>
   );
 };

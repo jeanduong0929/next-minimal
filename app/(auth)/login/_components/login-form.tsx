@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { FormInput } from "@/components/form/form-input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export const LoginForm = () => {
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -12,12 +12,8 @@ export const LoginForm = () => {
 
   return (
     <form className="flex flex-col gap-3" onSubmit={handleLoginSubmit}>
-      <FormInput
-        className="w-full"
-        type="email"
-        placeholder="name@example.com"
-      />
-      <FormInput className="w-full" type="password" placeholder="Password" />
+      <Input className="w-full" type="email" placeholder="name@example.com" />
+      <Input className="w-full" type="password" placeholder="Password" />
       <Button className="w-full" type="submit">
         Sign In with Email
       </Button>

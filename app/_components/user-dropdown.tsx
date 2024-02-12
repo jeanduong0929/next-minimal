@@ -13,6 +13,16 @@ import Link from "next/link";
 
 export const UserDropdown = () => {
   const { data: session } = useSession();
+  const items = [
+    {
+      label: "Profile",
+      href: "/profile",
+    },
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+  ];
 
   const getInitials = () => {
     if (session?.user && session.user?.email) {
@@ -33,12 +43,15 @@ export const UserDropdown = () => {
       <DropdownMenuContent align={"end"}>
         <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link href={"/dashboard"}>Dashboard</Link>
-        </DropdownMenuItem>
+        {items.map((item, index) => (
+          <DropdownMenuItem key={index} className="cursor-pointer">
+            <Link href={item.href}>{item.label}</Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>Sign out</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
+          Sign out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
