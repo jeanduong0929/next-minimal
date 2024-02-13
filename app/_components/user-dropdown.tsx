@@ -44,9 +44,11 @@ export const UserDropdown = () => {
         <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {items.map((item, index) => (
-          <DropdownMenuItem key={index} className="cursor-pointer">
-            <Link href={item.href}>{item.label}</Link>
-          </DropdownMenuItem>
+          <Link key={index} href={item.href}>
+            <DropdownMenuItem className="cursor-pointer">
+              {item.label}
+            </DropdownMenuItem>
+          </Link>
         ))}
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
