@@ -41,7 +41,7 @@ export const UserDropdown = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={"end"}>
-        <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
+        <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {items.map((item, index) => (
           <DropdownMenuItem key={index} className="cursor-pointer">

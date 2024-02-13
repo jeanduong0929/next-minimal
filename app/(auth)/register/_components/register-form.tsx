@@ -16,7 +16,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { useToasterUtil } from "@/app/hooks/custom-toaster-hook";
+import { useToasterUtil } from "@/hooks/custom-toaster-hook";
 
 export const RegisterForm = () => {
   const { success } = useToasterUtil();
@@ -34,16 +34,13 @@ export const RegisterForm = () => {
   ) => {
     try {
       const { email, password } = values;
-      const payload = {
-        email,
-        password,
-      };
-      const { data } = await instance.post("/auth/register", payload);
-      validateStatus(data.status);
+      await instance.post("/auth/register", { email, password });
       success("Account created successfully");
       router.push("/login");
     } catch (error: any) {
-      console.error(error);
+      if (error.response && error.response.status) {
+        validateStatus(error.response.status);
+      }
     }
   };
 
