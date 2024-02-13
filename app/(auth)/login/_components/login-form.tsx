@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "./login-schema";
@@ -19,7 +19,7 @@ import {
 import Loading from "@/components/loading";
 
 export const LoginForm = () => {
-  const { data: session, status } = useSession();
+  const { data: _, status } = useSession();
   const [pageLoading, setPageLoading] = React.useState(true);
   const router = useRouter();
   const form = useForm<z.infer<typeof LoginSchema>>({
